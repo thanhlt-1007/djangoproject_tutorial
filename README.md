@@ -2,7 +2,7 @@
 
 Writing your first Django app
 
-## Reference:
+## Reference
 
 - https://docs.djangoproject.com/en/5.1/intro/tutorial01/
 
@@ -35,4 +35,10 @@ python manage.py runserver
 
 ```sh
 localhost:8000
+```
+
+## Create super user
+
+```sh
+python manage.py createsuperuser
 ```
