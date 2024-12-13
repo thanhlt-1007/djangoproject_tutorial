@@ -1,4 +1,4 @@
-<form action={% url "polls:votes" question.id %} method="POST">
+<form action={% url "polls:vote" question.id %} method="POST">
   {% csrf_token %}
 
   <fieldset>
@@ -18,7 +18,7 @@
 
     {% for choice in question.choice_set.all %}
       <input type="radio"
-        name="choice"
+        name="choice_id"
         id="choice-{{ forloop.counter }}"
         value={{ choice.id }}>
       <label for="choice-{{ forloop.counter }}">
@@ -26,5 +26,7 @@
       </label>
       <br>
     {% endfor %}
+
+    <input type="submit" value="Vote">
   </fieldset>
 </form>
