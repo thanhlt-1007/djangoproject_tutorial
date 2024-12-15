@@ -8,6 +8,7 @@ from django.shortcuts import render
 
 from django.urls import reverse
 
+from django.views.generic import DetailView
 from django.views.generic import ListView
 
 from polls.models import Choice
@@ -22,12 +23,9 @@ class PoolsListView(ListView):
         return Question.objects.order_by("-pub_date")[:5]
 
 
-def detail(request, question_id):
-    question = get_object_or_404(klass=Question, id=question_id)
-    context = {
-        "question": question
-    }
-    return render(request=request, template_name="polls/detail.html", context=context)
+class PollsDetailViiew(DetailView):
+    model = Question
+    template_name = "polls/detail.html"
 
 
 def vote(request, question_id):
