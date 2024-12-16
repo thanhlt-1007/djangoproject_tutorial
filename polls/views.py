@@ -23,9 +23,14 @@ class PoolsListView(ListView):
         return Question.objects.order_by("-pub_date")[:5]
 
 
-class PollsDetailViiew(DetailView):
-    model = Question
+class PollsDetailView(DetailView):
     template_name = "polls/detail.html"
+    model = Question
+
+
+class PollsResultsView(DetailView):
+    template_name = "polls/results.html"
+    model = Question
 
 
 def vote(request, question_id):
@@ -44,14 +49,6 @@ def vote(request, question_id):
 
     redirect_url = reverse(viewname="polls:results", args=(question.id,))
     return HttpResponseRedirect(redirect_to=redirect_url)
-
-
-def results(request, question_id):
-    question = get_object_or_404(klass=Question, id=question_id)
-    context = {
-        "question": question
-    }
-    return render(request=request, template_name="polls/results.html", context=context)
 
 
 def votes(request, question_id):
