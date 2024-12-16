@@ -7,4 +7,4 @@ class QuestionFactory(DjangoModelFactory):
         model = "polls.Question"
 
     question_text = Faker("sentence")
-    pub_date =Faker("date_object")
+    pub_date = Faker("date_object")
